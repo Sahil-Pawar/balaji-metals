@@ -1,0 +1,70 @@
+.about-page {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #fffaf3, #fff3d1);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #8c2800;
+    margin-bottom: 1rem;
+    position: relative;
+    animation: slideIn 1s ease forwards;
+    opacity: 0;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: #3a2610;
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeIn 2s ease forwards;
+    animation-delay: 0.5s;
+  }
+
+  /* Hover effect */
+  &:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+  }
+
+  /* Animations */
+  @keyframes slideIn {
+    0% {
+      transform: translateY(-30px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .about-page {
+    padding: 1rem;
+    h2 {
+      font-size: 1.5rem;
+    }
+    p {
+      font-size: 1rem;
+    }
+  }
+}

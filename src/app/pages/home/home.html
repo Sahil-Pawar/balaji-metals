@@ -1,0 +1,43 @@
+
+
+<!-- 🔹 Banner Section -->
+<section class="banner-container">
+  <div class="banner-slider">
+    <div
+      class="banner-slide"
+      *ngFor="let banner of banners; let i = index"
+      [class.active]="i === currentBanner"
+    >
+      <img [src]="banner.image" [alt]="banner.alt" />
+      <div class="banner-caption">
+        <h2>{{ banner.alt }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔹 Dots for Navigation -->
+  <div class="banner-dots">
+    <span
+      *ngFor="let banner of banners; let i = index"
+      [class.active]="i === currentBanner"
+      (click)="currentBanner = i"
+    ></span>
+  </div>
+</section>
+
+<!-- 🔹 Category Section -->
+<section class="home-section">
+  <h2 class="section-title">Shop by Category</h2>
+
+  <div class="category-grid">
+    <div class="category-card" *ngFor="let item of categories">
+      <div class="image-container">
+        <img [src]="item.image" alt="{{ item.name }}" />
+      </div>
+      <div class="category-info">
+        <h3>{{ item.name }}</h3>
+        <p>Starting from ₹{{ item.price }}</p>
+      </div>
+    </div>
+  </div>
+</section>

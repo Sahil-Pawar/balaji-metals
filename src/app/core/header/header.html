@@ -1,0 +1,18 @@
+<nav class="navbar">
+  <!-- 🔹 Hamburger Icon (left side) -->
+  <div class="menu-toggle" (click)="toggleMenu()">☰</div>
+
+  <!-- 🔹 Logo (center) -->
+  <div class="logo">
+    <img src="assets/images/shop-logo.png" alt="Balaji Metals Logo" />
+    <span>Balaji Metals</span>
+  </div>
+
+  <!-- 🔹 Navigation Links -->
+  <ul class="nav-links" [class.active]="menuOpen">
+    <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+    <li><a routerLink="/products" routerLinkActive="active">Products</a></li>
+    <li><a routerLink="/about" routerLinkActive="active">About Us</a></li>
+    <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+  </ul>
+</nav>
