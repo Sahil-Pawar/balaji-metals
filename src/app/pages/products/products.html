@@ -1,1 +1,71 @@
-<p>products works!</p>
+<div class="product-page" *ngIf="selectedProduct">
+  <!-- Image Section -->
+  <div class="image-section">
+    <div class="main-image-container">
+      <img [src]="selectedImage" alt="product image" class="main-image" />
+    </div>
+
+    <div class="thumbnail-row">
+      <img
+        *ngFor="let img of selectedProduct.images"
+        [src]="img"
+        [class.active]="img === selectedImage"
+        (click)="changeImage(img)"
+        alt="thumbnail"
+      />
+    </div>
+  </div>
+
+  <!-- Product Info -->
+  <div class="info-section">
+    <h2 class="product-title">{{ selectedProduct.name }}</h2>
+    <p class="sold-text">🔥 {{ selectedProduct.sold }} sold in last {{ selectedProduct.timeframe }}</p>
+
+    <div class="product-meta">
+      <p><strong>Vendor:</strong> {{ selectedProduct.vendor }}</p>
+      <p><strong>SKU:</strong> {{ selectedProduct.sku }}</p>
+      <p><strong>Availability:</strong> {{ selectedProduct.availability }}</p>
+      <p><strong>Product Type:</strong> {{ selectedProduct.type }}</p>
+    </div>
+
+    <p class="description">{{ selectedProduct.description }}</p>
+
+    <!-- Price -->
+    <div class="price-block">
+      <p class="old-price">MRP ₹{{ selectedProduct.oldPrice }}</p>
+      <p class="new-price">₹{{ selectedProduct.price }}</p>
+      <p class="tax-note">(Inclusive of all taxes)</p>
+    </div>
+
+    <!-- Variants -->
+   <div class="variants" *ngIf="selectedProduct.variants && selectedProduct.variants.length > 0">
+
+      <p><strong>Size:</strong></p>
+      <div class="variant-options">
+        <button
+          *ngFor="let variant of selectedProduct.variants"
+          (click)="selectVariant(variant)"
+          [class.active]="variant === selectedVariant"
+        >
+          {{ variant }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Other Products Section -->
+<div class="other-products">
+  <h3>Similar Products</h3>
+  <div class="product-slider">
+    <div
+      class="product-item"
+      *ngFor="let product of products"
+      (click)="selectProduct(product)"
+    >
+      <img [src]="product.images[0]" alt="{{ product.name }}" />
+      <div class="name">{{ product.name }}</div>
+      <div class="mrp">₹{{ product.price }}</div>
+    </div>
+  </div>
+</div>
