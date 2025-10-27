@@ -1,38 +1,49 @@
 .navbar {
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 50px 25px;
+  align-items:center;
+  padding: 40px 25px;
   background: linear-gradient(90deg, #fef9c3, #fdd835);
   color: #2c3e50;
-  border-radius: 10px;
+  border-radius: 0 0 10px 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  position: relative;
-  z-index: 100;
+  position: fixed; /* ✅ Fixed header */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* stays above everything */
 }
 
-/* 🔹 Hamburger Icon on the Left */
+/* Add top margin to body so content isn’t hidden under navbar */
+body {
+  margin-top: 90px; /* adjust based on header height */
+}
+
+/* 🔹 Hamburger Icon (left) */
 .menu-toggle {
   position: absolute;
   left: 20px;
   font-size: 2rem;
   cursor: pointer;
   color: #2c3e50;
-  display: none; /* hidden by default (desktop) */
+  display: none;
 }
 
-/* 🔹 Logo in the center */
+/* 🔹 Logo (center) */
 .logo {
   display: flex;
   align-items: center;
-  gap: 30px;
+  justify-content: center;
+  gap: 15px;
   cursor: pointer;
-
+  white-space: nowrap; /* ✅ Prevent text wrapping */
+  overflow: hidden;
   img {
-    width: 45px;
-    height: 45px;
-    border-radius: 8px;
+    width: 55px;
+    height: 50px;
+    border-radius: 30px;
     object-fit: cover;
+    border: 1px solid #8c2800;
   }
 
   span {
@@ -44,7 +55,7 @@
   }
 }
 
-/* 🔹 Navigation Links (desktop) */
+/* 🔹 Desktop Nav Links */
 .nav-links {
   list-style: none;
   display: flex;
@@ -70,7 +81,7 @@
 /* 🔹 Mobile Responsive */
 @media (max-width: 768px) {
   .menu-toggle {
-    display: block; /* show on mobile */
+    display: block;
   }
 
   .logo {
@@ -83,7 +94,7 @@
     flex-direction: column;
     position: fixed;
     top: 0;
-    left: -100%; /* hide off-screen initially */
+    left: -100%;
     width: 220px;
     height: 100vh;
     background: #fff8c4;
@@ -91,11 +102,11 @@
     box-shadow: 4px 0 10px rgba(0, 0, 0, 0.15);
     transition: left 0.3s ease-in-out;
     border-radius: 0 8px 8px 0;
-    z-index: 99;
+    z-index: 999;
   }
 
   .nav-links.active {
-    left: 0; /* slide in when active */
+    left: 0;
   }
 
   .nav-links li {
@@ -106,5 +117,9 @@
     display: block;
     font-size: 1.1rem;
     padding: 10px 12px;
+  }
+
+  body {
+    margin-top: 70px;
   }
 }

@@ -1,0 +1,16 @@
+<div class="reviews-section" [class.visible]="isVisible">
+  <h2>What Our Customers Say</h2>
+
+  <div class="reviews-container">
+    <div class="review-card" *ngFor="let review of reviews">
+      <div class="review-header">
+        <img [src]="review.image" alt="{{review.name}}" />
+        <div class="review-info">
+          <h3>{{ review.name }}</h3>
+          <p class="rating">⭐ {{ review.rating }}/5</p>
+        </div>
+      </div>
+      <p class="review-text">"{{ review.comment }}"</p>
+    </div>
+  </div>
+</div>

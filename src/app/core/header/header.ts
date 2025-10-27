@@ -24,4 +24,9 @@ export class HeaderComponent {
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
+
+  
+closeMenu() {
+  this.menuOpen = false;
+}
 }

@@ -8,7 +8,7 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  line-height: 1.6;
+  line-height: 1.3;
   color: #2c3e50; /* default text color */
   background-color: #fffaf3; /* optional */
 }
@@ -17,4 +17,59 @@ h1, h2, h3, h4, h5, h6,
 a, button, input, label, textarea,
 .banner-container, .category-card, footer {
   font-family: 'Poppins', sans-serif;
+}
+/* Global header-safe spacing (put in src/styles.scss) */
+
+/* set a default header height variable (desktop) */
+:root {
+  --header-height: 50px; /* adjust to match your desktop header real height */
+}
+
+/* override on small screens if header is taller on mobile */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 40px; /* adjust for mobile header height */
+  }
+}
+
+/* Make header fixed and use exact height */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  /* keep other visual styles as you have them */
+}
+
+/* Apply the page offset globally so content is not hidden */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* push content down by the header height */
+body {
+  padding-top: var(--header-height);
+}
+
+/* If you have a specific main container, you can apply there instead:
+   .main-container { padding-top: var(--header-height); }
+*/
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.layout-container {
+  min-height: 100vh; /* full viewport height */
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1; /* take all available space between header and footer */
 }

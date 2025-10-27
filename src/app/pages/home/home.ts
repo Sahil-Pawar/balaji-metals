@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReviewsComponent } from "../reviews/reviews";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReviewsComponent],
   templateUrl: './home.html',
   styleUrls: ['./home.scss']
 })
