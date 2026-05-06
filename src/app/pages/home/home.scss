@@ -1,176 +1,219 @@
-/* 🔹 General Layout */
+/* 🔹 General Layout & Variables */
 :host {
   display: block;
-  background: #fffdf5;
-  
+  background: #fafaf8; // Modern off-white to replace harsh yellow gradients
+  --gold-accent: #b8860b;
+  --dark-brown: #3a2610;
+  --soft-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08);
 }
 
-/* 🔹 Banner Section */
+/* 🔹 Modern Hero Banner Section */
 .banner-container {
   position: relative;
-  width: 100%;
-  height: 350px;
+  width: 94%;
+  margin: 100px auto 40px; // Spacing for sticky navbar
+  height: 450px;
   overflow: hidden;
-  margin-top: 50px;
-  margin-left: 5px;
-  margin-right: 5px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-radius: 24px;
+  box-shadow: var(--soft-shadow);
+  background: #fff;
 }
 
 .banner-slider {
   display: flex;
   position: relative;
+  height: 100%;
 }
 
 .banner-slide {
   min-width: 100%;
-  height: 350px;
+  height: 100%;
   opacity: 0;
   position: absolute;
   top: 0;
   left: 0;
-  transition: opacity 1s ease-in-out, transform 1s ease;
-}
-
-.banner-slide.active {
-  opacity: 1;
-  position: relative;
-}
-
-.banner-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Keeps full image visible */
-  border-radius: 10px;
-  transition: transform 4s ease-in-out;
-}
-
-.banner-slide.active img {
-  transform: scale(1.05); /* subtle zoom effect */
-}
-
-.banner-caption {
-  position: absolute;
-  bottom: 20px;
-  left: 30px;
-  color: #2c3e50;
-  background: rgba(255,255,255,0.8);
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-weight: 600;
-}
-
-/* 🔹 Dots Navigation */
-.banner-dots {
-  position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-
-  span {
-    width: 10px;
-    height: 10px;
-    background: #ddd;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s;
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &.active {
+    opacity: 1;
+    position: relative;
   }
-
-  span.active {
-    background: #fbc02d;
-    transform: scale(1.3);
-  }
-}
-
-/* 🔹 Category Section */
-.home-section {
-  text-align: center;
-  padding: 2rem 1rem;
-  background: linear-gradient(180deg, #fff9c4, #fffaf3);
-}
-
-.section-title {
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: #4b2e05;
-  margin-bottom: 1.5rem;
-}
-
-.category-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 1.2rem;
-  justify-items: center;
-}
-
-.category-card {
-  background: #fff;
-  border-radius: 15px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-  overflow: hidden;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  width: 100%;
-  max-width: 220px;
-  cursor: pointer;
-
-  &:hover {
-    transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 5px 14px rgba(0,0,0,0.2);
-  }
-}
-
-.image-container {
-  width: 100%;
-  height: 150px;
-  overflow: hidden;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 8s linear;
+  }
+
+  &.active img {
+    transform: scale(1.1); // Subtle Ken Burns zoom effect
+  }
+}
+
+.banner-caption {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px); // Modern Glassmorphism
+  padding: 15px 25px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--dark-brown);
+  font-weight: 700;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+/* 🔹 Banner Navigation Dots */
+.banner-dots {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 11;
+
+  span {
+    width: 25px; // Modern pill-shaped dots
+    height: 6px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &.active {
+      width: 45px;
+      background: var(--gold-accent);
+    }
+  }
+}
+
+/* 🔹 Category Grid Section */
+.home-section {
+  text-align: center;
+  padding: 4rem 5%;
+  background: transparent;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--dark-brown);
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  
+  &::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 4px;
+    background: var(--gold-accent);
+    margin: 12px auto;
+    border-radius: 2px;
+  }
+}
+
+.category-grid {
+  display: grid;
+  // Responsive grid: defaults to 4 per row on desktop
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.category-card {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid #f0f0f0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  width: 100%;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--soft-shadow);
+    border-color: var(--gold-accent);
+  }
+}
+
+.image-container {
+  width: 100%;
+  height: 180px;
+  padding: 15px; // White space around products
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; // Best for metalware products
+    transition: transform 0.6s ease;
   }
 
   .category-card:hover & img {
-    transform: scale(1.08);
+    transform: scale(1.1);
   }
 }
 
 .category-info {
-  padding: 0.8rem;
-  background: #fffef7;
+  padding: 1.2rem;
+  background: #fff;
+  border-top: 1px solid #f9f9f9;
+
+  h3 {
+    color: var(--dark-brown);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  p {
+    color: var(--gold-accent);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin: 0;
+  }
 }
 
-.category-info h3 {
-  color: #3a2610;
-  font-size: 1rem;
-  margin-bottom: 0.3rem;
-}
-
-.category-info p {
-  color: #8c5a2b;
-  font-weight: 500;
-  margin: 0;
-}
-
-/* 🔹 Mobile Responsive */
+/* 🔹 Mobile & Tablet Responsive Adjustments */
 @media (max-width: 768px) {
+  /* Fix Banner Height and Caption Overlap */
   .banner-container {
-    height: 220px;
+    height: 280px;
+    width: 96%;
+    margin-top: 80px;
   }
 
   .banner-caption {
-    font-size: 0.9rem;
-    bottom: 10px;
+    font-size: 0.8rem;
+    bottom: 15px;
     left: 15px;
-    padding: 6px 12px;
+    padding: 8px 15px;
+    max-width: 65%; // Constraints width to prevent covering the image
+    backdrop-filter: blur(8px);
   }
 
+  /* Force 2 Grids Per Row */
   .category-grid {
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    grid-template-columns: 1fr 1fr; // Fixed two-column layout
+    gap: 12px;
+    padding: 0 5px;
+  }
+
+  .category-card {
+    .image-container {
+      height: 130px;
+    }
+    .category-info {
+      padding: 0.8rem;
+      h3 { font-size: 0.9rem; }
+      p { font-size: 0.8rem; }
+    }
   }
 
   .section-title {

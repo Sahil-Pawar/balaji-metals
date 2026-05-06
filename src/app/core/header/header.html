@@ -1,19 +1,29 @@
-<nav class="navbar">
-  <!-- 🔹 Hamburger Icon (left side) -->
-  <div class="menu-toggle" (click)="toggleMenu()">☰</div>
+<nav class="navbar" [class.scrolled]="isScrolled">
+  <!-- 🔹 Hamburger Icon -->
+  <div class="menu-toggle" (click)="toggleMenu()">
+    <span *ngIf="!menuOpen">☰</span>
+    <span *ngIf="menuOpen">✕</span>
+  </div>
 
-  <!-- 🔹 Logo (center) -->
-  <div class="logo">
+  <!-- 🔹 Logo Section -->
+  <div class="logo" routerLink="/">
     <img src="assets/images/shop-logo.png" alt="Balaji Metals Logo" />
     <span>Balaji Metals</span>
   </div>
 
-  <!-- 🔹 Navigation Links -->
- <ul class="nav-links" [class.active]="menuOpen">
-  <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">Home</a></li>
-  <li><a routerLink="/products" routerLinkActive="active" (click)="closeMenu()">Products</a></li>
-  <li><a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">About Us</a></li>
-  <li><a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">Contact</a></li>
-</ul>
-
+  <!-- 🔹 Nav Links -->
+  <ul class="nav-links" [class.active]="menuOpen">
+    <li>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">Home</a>
+    </li>
+    <li>
+      <a routerLink="/products" routerLinkActive="active" (click)="closeMenu()">Products</a>
+    </li>
+    <li>
+      <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">About Us</a>
+    </li>
+    <li>
+      <a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">Contact</a>
+    </li>
+  </ul>
 </nav>
